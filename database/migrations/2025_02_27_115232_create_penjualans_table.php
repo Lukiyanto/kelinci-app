@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('anakan_id')->constrained('anakans')->onDelete('cascade');
             $table->string('kode_penjualan')->unique();
             $table->date('tanggal_penjualan');
-            $table->decimal('harga', 10, 2);
+            $table->decimal('total_harga', 10, 2);
             $table->enum('status', ['terjual', 'tersedia'])->default('tersedia');
             $table->timestamps();
         });

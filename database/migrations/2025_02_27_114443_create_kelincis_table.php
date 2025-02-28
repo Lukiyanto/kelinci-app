@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kelincis', function (Blueprint $table) {
             $table->id();
             $table->string('kode_kelinci')->unique();
-            $table->string('nama');
+            $table->string('nama_kelinci');
             $table->enum('ras', ['anggora', 'holland lop', 'netherland dwarf', 'lionhead', 'flemish giant', 'rex', 'dutch', 'lop', 'polish', 'jersey wooly', 'mini rex', 'mini lop', 'himalayan', 'californian', 'new zealand', 'satin', 'tan']);
             $table->enum('jenis_kelamin', ['jantan', 'betina']);
             $table->integer('umur');
