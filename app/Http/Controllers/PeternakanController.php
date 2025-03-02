@@ -68,7 +68,7 @@ class PeternakanController extends Controller
         ]);
 
         $peternakan->update($request->all());
-        return redirect()->route('peternakan.index')->with('success', 'Peternakan updated successfully.')
+        return redirect()->route('peternakan.index')->with('success', 'Peternakan updated successfully.');
     }
 
     /**
