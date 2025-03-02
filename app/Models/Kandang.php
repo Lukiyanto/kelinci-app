@@ -12,9 +12,10 @@ class Kandang extends Model
     protected $fillable = [
         'kode_kandang',
         'nama_kandang',
-        'jenis_ayam',
+        'jenis_kandang',
         'lokasi',
         'kapasitas',
-        'status'
+        'status_kandang',
+        'peternakan_id'
     ];
 }

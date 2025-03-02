@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('jenis_kandang');
             $table->string('lokasi')->nullable();
             $table->integer('kapasitas')->default(1);
-            $table->enum('status',['tersedia', 'terisi', 'perbaikan', 'rusak'])->default('tersedia');
+            $table->enum('status_kandang',['tersedia', 'terisi', 'perbaikan', 'rusak'])->default('tersedia');
+            $table->foreignId('peternakan_id')->constrained('peternakans')->cascadeOnDelete();
             $table->timestamps();
         });
     }

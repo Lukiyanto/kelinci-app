@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('anakan_id')->constrained('anakans')->onDelete('cascade');
-            $table->string('kode_penjualan')->unique();
-            $table->date('tanggal_penjualan');
-            $table->decimal('total_harga', 10, 2);
-            $table->enum('status', ['terjual', 'tersedia'])->default('tersedia');
+            $table->string('nomor_transaksi')->unique();
+            $table->date('tanggal_transaksi');
+            $table->decimal('total_harga', 15, 2);
+            $table->string('nama_pembeli');
+            $table->string('telepon_pembeli');
             $table->timestamps();
         });
     }
