@@ -12,7 +12,8 @@ class JenisRasController extends Controller
      */
     public function index()
     {
-        return view('jenis-ras.index');
+        $jenisRas = JenisRas::all();
+        return view('jenis-ras.index', compact('jenisRas'));
     }
 
     /**
@@ -28,53 +29,53 @@ class JenisRasController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate ([
+        $request->validate([
             'nama_ras' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'harga_jual' => 'required|integer|min:0',
         ]);
 
         JenisRas::create($request->all());
-        return redirect()->route('peternakan.index')->with('success', 'Jenis Ras created successfully.');
+        return redirect()->route('jenis-ras.index')->with('success', 'Jenis Ras created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JenisRas $jenisRas)
+    public function show(JenisRas $ras)
     {
-        return view('jenis-ras.show', compact('jenisRas'));
+        return view('jenis-ras.show', compact('ras'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JenisRas $jenisRas)
+    public function edit(JenisRas $ras)
     {
-        return view('jenis-ras.edit');
+        return view('jenis-ras.edit', compact('ras'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JenisRas $jenisRas)
+    public function update(Request $request, JenisRas $ras)
     {
-        $request->validate ([
+        $request->validate([
             'nama_ras' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'harga_jual' => 'required|integer|min:0',
         ]);
 
-        $jenisRas->update($request->all());
+        $ras->update($request->all());
         return redirect()->route('jenis-ras.index')->with('success', 'Jenis Ras updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JenisRas $jenisRas)
+    public function destroy(JenisRas $ras)
     {
-        $jenisRas->delete();
+        $ras->delete();
         return redirect()->route('jenis-ras.index')->with('success', 'Jenis Ras deleted successfully.');
     }
 }

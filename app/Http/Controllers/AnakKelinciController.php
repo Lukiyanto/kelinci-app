@@ -12,7 +12,8 @@ class AnakKelinciController extends Controller
      */
     public function index()
     {
-        return view('anak-kelinci.index');
+        $anakKelincis = AnakKelinci::all();
+        return view('anak-kelinci.index', compact('anakKelincis'));
     }
 
     /**
@@ -47,7 +48,7 @@ class AnakKelinciController extends Controller
      */
     public function show(AnakKelinci $anakKelinci)
     {
-        return view('anak-kelinci.show');
+        return view('anak-kelinci.show', compact('anakKelinci'));
     }
 
     /**
@@ -55,7 +56,7 @@ class AnakKelinciController extends Controller
      */
     public function edit(AnakKelinci $anakKelinci)
     {
-        return view('anak-kelinci.edit');
+        return view('anak-kelinci.edit', compact('anakKelinci'));
     }
 
     /**

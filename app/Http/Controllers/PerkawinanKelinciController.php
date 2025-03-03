@@ -12,7 +12,8 @@ class PerkawinanKelinciController extends Controller
      */
     public function index()
     {
-        return view('perkawinan-kelinci.index');
+        $perkawinanKelincis = PerkawinanKelinci::all();
+        return view('perkawinan-kelinci.index', compact('perkawinanKelincis'));
     }
 
     /**
@@ -49,7 +50,7 @@ class PerkawinanKelinciController extends Controller
      */
     public function show(PerkawinanKelinci $perkawinanKelinci)
     {
-        return view('perkawinan-kelinci.show');
+        return view('perkawinan-kelinci.show', compact('perkawinanKelinci'));
     }
 
     /**
@@ -57,7 +58,7 @@ class PerkawinanKelinciController extends Controller
      */
     public function edit(PerkawinanKelinci $perkawinanKelinci)
     {
-        return view('perkawinan-kelinci.edit');
+        return view('perkawinan-kelinci.edit', compact('perkawinanKelinci'));
     }
 
     /**

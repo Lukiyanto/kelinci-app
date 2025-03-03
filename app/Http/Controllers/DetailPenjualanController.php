@@ -12,7 +12,8 @@ class DetailPenjualanController extends Controller
      */
     public function index()
     {
-        return view('detail-penjualan.index');
+        $detailPenjualans = DetailPenjualan::all();
+        return view('detail-penjualan.index', compact('detailPenjualans'));
     }
 
     /**
@@ -44,7 +45,7 @@ class DetailPenjualanController extends Controller
      */
     public function show(DetailPenjualan $detailPenjualan)
     {
-        return view('detail-penjualan.show');
+        return view('detail-penjualan.show', compact('detailPenjualan'));
     }
 
     /**
@@ -52,7 +53,7 @@ class DetailPenjualanController extends Controller
      */
     public function edit(DetailPenjualan $detailPenjualan)
     {
-        return view('detail-penjualan.edit');
+        return view('detail-penjualan.edit', compact('detailPenjualan'));
     }
 
     /**

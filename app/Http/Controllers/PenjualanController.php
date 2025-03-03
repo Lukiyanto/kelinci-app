@@ -12,7 +12,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        return view('penjualan.index');
+        $penjualans = Penjualan::all();
+        return view('penjualan.index', compact('penjualans'));
     }
 
     /**
@@ -45,7 +46,7 @@ class PenjualanController extends Controller
      */
     public function show(Penjualan $penjualan)
     {
-        return view('penjualan.show');
+        return view('penjualan.show', compact('penjualan'));
     }
 
     /**
@@ -53,7 +54,7 @@ class PenjualanController extends Controller
      */
     public function edit(Penjualan $penjualan)
     {
-        return view('penjualan.edit');
+        return view('penjualan.edit', compact('penjualan'));
     }
 
     /**

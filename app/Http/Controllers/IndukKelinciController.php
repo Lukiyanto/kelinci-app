@@ -12,7 +12,8 @@ class IndukKelinciController extends Controller
      */
     public function index()
     {
-        return view('induk-kelinci.index');
+        $indukKelincis = IndukKelinci::all();
+        return view('induk-kelinci.index', compact('indukKelincis'));
     }
 
     /**
@@ -47,7 +48,7 @@ class IndukKelinciController extends Controller
      */
     public function show(IndukKelinci $indukKelinci)
     {
-        return view('induk-kelinci.show');
+        return view('induk-kelinci.show', compact('indukKelinci'));
     }
 
     /**
@@ -55,7 +56,7 @@ class IndukKelinciController extends Controller
      */
     public function edit(IndukKelinci $indukKelinci)
     {
-        return view('induk-kelinci.edit');
+        return view('induk-kelinci.edit', compact('indukKelinci'));
     }
 
     /**

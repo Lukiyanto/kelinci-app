@@ -12,7 +12,8 @@ class PeternakanController extends Controller
      */
     public function index()
     {
-        return view('peternakan.index');
+        $peternakans = Peternakan::all();
+        return view('peternakan.index', compact('peternakans'));
     }
 
     /**

@@ -12,8 +12,30 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('peternakan.index') }}">Peternakan</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('kandang.index') }}">Kandang</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('jenis-ras.index') }}">Jenis Ras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('induk-kelinci.index') }}">Induk Kelinci</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('anak-kelinci.index') }}">Anak Kelinci</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('perkawinan-kelinci.index') }}">Perkawinan Kelinci</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('penjualan.index') }}">Penjualan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('detail-penjualan.index') }}">Detail Penjualan</a>
+                </li>
+
                 <!-- Tambahkan menu lainnya -->
             </ul>
         </div>
