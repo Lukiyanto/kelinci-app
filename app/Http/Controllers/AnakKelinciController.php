@@ -36,7 +36,7 @@ class AnakKelinciController extends Controller
             'jenis_kelamin' => 'required|string|max:255',
             'status_anak' => 'required|string',
             'perkawinan_id' => 'required|integer',
-            'jenis_ras_id' => 'required|integer',
+            'jenis_kelinci_id' => 'required|integer',
         ]);
 
         AnakKelinci::create($request->all());
@@ -71,7 +71,7 @@ class AnakKelinciController extends Controller
             'jenis_kelamin' => 'required|string|max:255',
             'status_anak' => 'required|string',
             'perkawinan_id' => 'required|integer',
-            'jenis_ras_id' => 'required|integer',
+            'jenis_kelinci_id' => 'required|integer',
         ]);
 
         $anakKelinci->update($request->all());

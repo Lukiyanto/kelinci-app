@@ -18,7 +18,7 @@
                     <a class="nav-link" href="{{ route('kandang.index') }}">Kandang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('jenis-ras.index') }}">Jenis Ras</a>
+                    <a class="nav-link" href="{{ route('jenis-kelinci.index') }}">Jenis Kelinci</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('induk-kelinci.index') }}">Induk Kelinci</a>

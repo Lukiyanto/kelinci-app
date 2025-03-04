@@ -16,7 +16,7 @@ class AnakKelinci extends Model
         'jenis_kelamin',
         'status_anak',
         'perkawinan_id',
-        'jenis_ras_id'
+        'jenis_kelinci_id'
     ];
 
     public function perkawinan()
@@ -24,8 +24,8 @@ class AnakKelinci extends Model
         return $this->belongsTo(PerkawinanKelinci::class);
     }
 
-    public function ras()
+    public function jenisKelinci()
     {
-        return $this->belongsTo(JenisRas::class, 'jenis_ras_id');
+        return $this->belongsTo(JenisKelinci::class);
     }
 }

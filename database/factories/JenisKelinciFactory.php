@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\JenisRas;
+use App\Models\JenisKelinci;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JenisRas>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JenisKelinci>
  */
-class JenisRasFactory extends Factory
+class JenisKelinciFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -24,7 +24,7 @@ class JenisRasFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_ras' => $this->faker->word,
+            'nama_kelinci' => $this->faker->word,
             'deskripsi' => $this->faker->sentence,
             'harga_jual' => $this->faker->numberBetween(30000, 40000),
         ];

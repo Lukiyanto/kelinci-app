@@ -35,7 +35,7 @@ class IndukKelinciController extends Controller
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string|max:255',
             'catatan' => 'required|string',
-            'jenis_ras_id' => 'required|integer',
+            'jenis_kelinci_id' => 'required|integer',
             'kandang_id' => 'required|integer',
         ]);
 
@@ -70,7 +70,7 @@ class IndukKelinciController extends Controller
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string|max:255',
             'catatan' => 'required|string',
-            'jenis_ras_id' => 'required|integer',
+            'jenis_kelinci_id' => 'required|integer',
             'kandang_id' => 'required|integer',
         ]);
 

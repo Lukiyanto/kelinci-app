@@ -15,13 +15,13 @@ class IndukKelinci extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'catatan',
-        'jenis_ras_id',
+        'jenis_kelinci_id',
         'kandang_id'
     ];
 
-    public function ras()
+    public function jenisKelinci()
     {
-        return $this->belongsTo(JenisRas::class, 'jenis_ras_id');
+        return $this->belongsTo(JenisKelinci::class);
     }
 
     public function kandang()

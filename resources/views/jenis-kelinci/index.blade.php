@@ -14,15 +14,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($jenisRas as $ras)
+            @foreach ($jenisKelincis as $jenisKelinci)
                 <tr>
-                    <td>{{ $ras->nama_ras }}</td>
-                    <td>{{ $ras->deskripsi }}</td>
-                    <td>{{ $ras->harga_jual }}</td>
+                    <td>{{ $jenisKelinci->nama_ras }}</td>
+                    <td>{{ $jenisKelinci->deskripsi }}</td>
+                    <td>{{ $jenisKelinci->harga_jual }}</td>
                     <td>
-                        <a href="{{ route('jenis-ras.show', $ras->id) }}" class="btn btn-info">Lihat</a>
-                        <a href="{{ route('jenis-ras.edit', $ras->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('jenis-ras.destroy', $ras->id) }}" method="POST" style="display:inline-block;">
+                        <a href="{{ route('jenis-ras.show', $jenisKelinci->id) }}" class="btn btn-info">Lihat</a>
+                        <a href="{{ route('jenis-ras.edit', $jenisKelinci->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('jenis-ras.destroy', $jenisKelinci->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Hapus</button>
