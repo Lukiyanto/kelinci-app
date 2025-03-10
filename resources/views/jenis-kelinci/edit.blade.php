@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Jenis Ras</h1>
-    <form action="{{ route('jenis-ras.update', $jenisKelinci->id) }}" method="POST">
+    <h1>Edit Jenis Kelinci</h1>
+    <form action="{{ route('jenis-kelinci.update', $jenisKelinci->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="nama_ras">Nama Ras</label>
-            <input type="text" name="nama_ras" class="form-control" value="{{ $jenisKelinci->nama_jenis }}" required>
+            <label for="nama_kelinci">Nama Jenis</label>
+            <input type="text" name="nama_kelinci" class="form-control" value="{{ $jenisKelinci->nama_jenis }}" required>
         </div>
         <div class="form-group">
             <label for="deskripsi">Deskripsi</label>

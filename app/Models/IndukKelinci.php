@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class IndukKelinci extends Model
@@ -19,13 +21,23 @@ class IndukKelinci extends Model
         'kandang_id'
     ];
 
-    public function jenisKelinci()
+    public function kandang(): BelongsTo
+    {
+        return $this->belongsTo(Kandang::class);
+    }
+
+    public function jenisKelinci(): BelongsTo
     {
         return $this->belongsTo(JenisKelinci::class);
     }
 
-    public function kandang()
+    public function anakKelinci(): HasMany
     {
-        return $this->belongsTo(Kandang::class);
+        return $this->hasMany(AnakKelinci::class);
+    }
+
+    public function perkawinan(): BelongsTo
+    {
+        return $this->belongsTo(PerkawinanKelinci::class); // Tambahkan ini jika diperlukan
     }
 }

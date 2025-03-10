@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Daftar Jenis Ras</h1>
-    <a href="{{ route('jenis-ras.create') }}" class="btn btn-primary">Tambah Jenis Ras</a>
+    <h1>Daftar Jenis Jenis</h1>
+    <a href="{{ route('jenis-kelinci.create') }}" class="btn btn-primary">Tambah Jenis Kelinci</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Nama Ras</th>
+                <th>Nama Jenis</th>
                 <th>Deskripsi</th>
                 <th>Harga Jual</th>
                 <th>Aksi</th>
@@ -16,13 +16,13 @@
         <tbody>
             @foreach ($jenisKelincis as $jenisKelinci)
                 <tr>
-                    <td>{{ $jenisKelinci->nama_ras }}</td>
+                    <td>{{ $jenisKelinci->nama_jenis }}</td>
                     <td>{{ $jenisKelinci->deskripsi }}</td>
                     <td>{{ $jenisKelinci->harga_jual }}</td>
                     <td>
-                        <a href="{{ route('jenis-ras.show', $jenisKelinci->id) }}" class="btn btn-info">Lihat</a>
-                        <a href="{{ route('jenis-ras.edit', $jenisKelinci->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('jenis-ras.destroy', $jenisKelinci->id) }}" method="POST" style="display:inline-block;">
+                        <a href="{{ route('jenis-kelinci.show', $jenisKelinci->id) }}" class="btn btn-info">Lihat</a>
+                        <a href="{{ route('jenis-kelinci.edit', $jenisKelinci->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('jenis-kelinci.destroy', $jenisKelinci->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Hapus</button>

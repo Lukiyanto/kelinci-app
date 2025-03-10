@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PerkawinanKelinci extends Model
 {
@@ -21,12 +22,12 @@ class PerkawinanKelinci extends Model
         'catatan'
     ];
 
-    public function indukBetina()
+    public function indukBetina(): BelongsTo
     {
         return $this->belongsTo(IndukKelinci::class, 'induk_betina_id');
     }
 
-    public function indukJantan()
+    public function indukJantan(): BelongsTo
     {
         return $this->belongsTo(IndukKelinci::class, 'induk_jantan_id');
     }

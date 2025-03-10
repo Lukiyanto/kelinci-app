@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Penjualan extends Model
 {
@@ -16,4 +17,9 @@ class Penjualan extends Model
         'nama_pembeli',
         'telepon_pembeli'
     ];
+
+    public function detailPenjualan(): HasMany
+    {
+        return $this->hasMany(DetailPenjualan::class);
+    }
 }
