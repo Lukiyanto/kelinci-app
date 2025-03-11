@@ -24,17 +24,19 @@ class PeternakanResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama_peternakan')
-                    ->label('Nama Peternakan')
                     ->placeholder('Masukkan nama peternakan')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('alamat_peternakan')
+                    ->placeholder('Masukkan alamat peternakan')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->placeholder('Masukkan email peternakan')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('telepon')
+                    ->placeholder('Masukkan telepon peternakan')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -44,7 +46,10 @@ class PeternakanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama_peternakan')->label('Nama Peternakan'),
+                Tables\Columns\TextColumn::make('alamat_peternakan')->label('Alamat Peternakan'),
+                Tables\Columns\TextColumn::make('email')->label('Email'),
+                Tables\Columns\TextColumn::make('telepon')->label('Telepon'),
             ])
             ->filters([
                 //

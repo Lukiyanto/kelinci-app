@@ -21,6 +21,17 @@ class AnakKelinci extends Model
         'jenis_kelinci_id'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $latestAnakKelinci = self::latest('id')->first();
+            $nextNumber = $latestAnakKelinci ? ((int) substr($latestAnakKelinci->kode_anak, 3)) + 1 : 1;
+            $model->kode_anak = 'ANK' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+        });
+    }
+
     public function perkawinan(): BelongsTo
     {
         return $this->belongsTo(PerkawinanKelinci::class);

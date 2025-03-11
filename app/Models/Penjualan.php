@@ -18,6 +18,20 @@ class Penjualan extends Model
         'telepon_pembeli'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            do {
+                $randomNumber = mt_rand(100000, 999999);
+                $nomorTransaksi = 'TPK' . $randomNumber;
+            } while (self::where('nomor_transaksi', $nomorTransaksi)->exists());
+
+            $model->nomor_transaksi = $nomorTransaksi;
+        });
+    }
+
     public function detailPenjualan(): HasMany
     {
         return $this->hasMany(DetailPenjualan::class);
