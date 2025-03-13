@@ -23,17 +23,13 @@ class JenisKelinciResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')
-                    ->label('Nama Jenis Kelinci')
+                Forms\Components\TextInput::make('nama_jenis')
                     ->placeholder('Masukkan nama jenis kelinci')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('deskripsi')
-                    ->label('Deskripsi')
-                    ->placeholder('Masukkan deskripsi jenis kelinci')
-                    ->required(),
+                    ->placeholder('Masukkan deskripsi jenis kelinci'),
                 Forms\Components\TextInput::make('harga_jual')
-                    ->label('Harga Jual')
                     ->placeholder('Masukkan harga jual')
                     ->required(),
             ]);
@@ -43,7 +39,9 @@ class JenisKelinciResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama_jenis')->label('Nama Jenis'),
+                Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
+                Tables\Columns\TextColumn::make('harga_jual')->label('Harga Jual'),
             ])
             ->filters([
                 //
@@ -52,9 +50,7 @@ class JenisKelinciResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

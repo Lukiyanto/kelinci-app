@@ -33,8 +33,7 @@ class KandangResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('lokasi_kandang')
                     ->label('Lokasi Kandang')
-                    ->placeholder('Masukkan Lokasi Kandang')
-                    ->required(),
+                    ->placeholder('Masukkan Lokasi Kandang'),
                 Forms\Components\Select::make('status_kandang')
                     ->label('Status Kandang')
                     ->placeholder('Pilih Status Kandang')
@@ -53,7 +52,7 @@ class KandangResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('kode_kandang')->label('Kode Kandang'),
-                Tables\Columns\TextColumn::make('lokasi')->label('Lokasi'),
+                Tables\Columns\TextColumn::make('lokasi_kandang')->label('Lokasi Kandang'),
                 Tables\Columns\TextColumn::make('kapasitas')->label('Kapasitas'),
                 Tables\Columns\TextColumn::make('status_kandang')->label('Status Kandang'),
             ])

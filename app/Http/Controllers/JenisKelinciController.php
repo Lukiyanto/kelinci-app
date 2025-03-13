@@ -30,8 +30,8 @@ class JenisKelinciController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kelinci' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'nama_jenis' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
             'harga_jual' => 'required|integer|min:0',
         ]);
 
@@ -61,8 +61,8 @@ class JenisKelinciController extends Controller
     public function update(Request $request, JenisKelinci $jenisKelinci)
     {
         $request->validate([
-            'nama_kelinci' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'nama_jenis' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
             'harga_jual' => 'required|integer|min:0',
         ]);
 
