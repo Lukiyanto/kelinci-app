@@ -30,20 +30,24 @@ class IndukKelinciResource extends Resource
                         \App\Models\JenisKelinci::all()->pluck('nama_jenis', 'id')->toArray()
                     )
                     ->required(),
+                Forms\Components\Select::make('kandang_id')
+                    ->label('Kandang')
+                    ->placeholder('Pilih kandang')
+                    ->options(
+                        \App\Models\Kandang::all()->pluck('kode_kandang', 'id')->toArray()
+                    )
+                    ->required(),
                 Forms\Components\TextInput::make('kode_induk')
                     ->label('Kode Induk')
-                    ->placeholder('Masukkan kode induk')
-                    ->required()
-                    ->maxLength(255),
+                    ->placeholder('Kode induk akan diisi otomatis')
+                    ->disabled(), // Ubah menjadi readonly
                 Forms\Components\TextInput::make('nama_induk')
                     ->label('Nama Induk')
                     ->placeholder('Masukkan nama induk')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\Datepicker::make('tanggal_lahir')
                     ->label('Tanggal Lahir')
-                    ->placeholder('Pilih tanggal lahir')
-                    ->required(),
+                    ->placeholder('Pilih tanggal lahir'),
                 Forms\Components\Select::make('jenis_kelamin')
                     ->label('Jenis Kelamin')
                     ->placeholder('Pilih jenis kelamin')
@@ -62,7 +66,12 @@ class IndukKelinciResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('kode_induk')->label('Kode Induk'),
+                Tables\Columns\TextColumn::make('nama_induk')->label('Nama Induk'),
+                Tables\Columns\TextColumn::make('tanggal_lahir')->label('Tanggal Lahir'),
+                Tables\Columns\TextColumn::make('jenis_kelamin')->label('Jenis Kelamin'),
+                Tables\Columns\TextColumn::make('jenisKelinci.nama_jenis')->label('Jenis Kelinci'),
+                Tables\Columns\TextColumn::make('kandang.kode_kandang')->label('Kandang'),
             ])
             ->filters([
                 //
@@ -71,9 +80,7 @@ class IndukKelinciResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

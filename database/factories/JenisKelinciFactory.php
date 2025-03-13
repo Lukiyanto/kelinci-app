@@ -24,7 +24,7 @@ class JenisKelinciFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_kelinci' => $this->faker->word,
+            'nama_jenis' => $this->faker->word,
             'deskripsi' => $this->faker->sentence,
             'harga_jual' => $this->faker->numberBetween(30000, 40000),
         ];

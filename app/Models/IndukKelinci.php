@@ -21,6 +21,18 @@ class IndukKelinci extends Model
         'kandang_id'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $prefix = $model->jenis_kelamin === 'Betina' ? 'IKB' : 'IKJ';
+            $latestIndukKelinci = self::where('kode_induk', 'like', $prefix . '%')->latest('id')->first();
+            $nextNumber = $latestIndukKelinci ? ((int) substr($latestIndukKelinci->kode_induk, 3)) + 1 : 1;
+            $model->kode_induk = $prefix . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        });
+    }
+    
     public function kandang(): BelongsTo
     {
         return $this->belongsTo(Kandang::class);

@@ -31,10 +31,10 @@ class IndukKelinciController extends Controller
     {
         $request->validate([
             'kode_induk' => 'required|string|max:255',
-            'nama_induk' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'nama_induk' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'required|string|max:255',
-            'catatan' => 'required|string',
+            'catatan' => 'nullable|string',
             'jenis_kelinci_id' => 'required|integer',
             'kandang_id' => 'required|integer',
         ]);
@@ -66,10 +66,10 @@ class IndukKelinciController extends Controller
     {
         $request->validate([
             'kode_induk' => 'required|string|max:255',
-            'nama_induk' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'nama_induk' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'required|string|max:255',
-            'catatan' => 'required|string',
+            'catatan' => 'nullable|string',
             'jenis_kelinci_id' => 'required|integer',
             'kandang_id' => 'required|integer',
         ]);

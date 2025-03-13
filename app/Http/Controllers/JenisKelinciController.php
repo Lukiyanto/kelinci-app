@@ -36,7 +36,7 @@ class JenisKelinciController extends Controller
         ]);
 
         JenisKelinci::create($request->all());
-        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis Ras created successfully.');
+        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis kelinci created successfully.');
     }
 
     /**
@@ -67,7 +67,7 @@ class JenisKelinciController extends Controller
         ]);
 
         $jenisKelinci->update($request->all());
-        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis Ras updated successfully.');
+        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis kelinci updated successfully.');
     }
 
     /**
@@ -76,6 +76,6 @@ class JenisKelinciController extends Controller
     public function destroy(JenisKelinci $jenisKelinci)
     {
         $jenisKelinci->delete();
-        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis Ras deleted successfully.');
+        return redirect()->route('jenis-kelinci.index')->with('success', 'Jenis kelinci deleted successfully.');
     }
 }
