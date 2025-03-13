@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('kode_induk')->unique();
             $table->string('nama_induk');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['jantan', 'betina']);
+            $table->enum('jenis_kelamin', ['Jantan', 'Betina']);
             $table->text('catatan')->nullable();
-            $table->foreignId('jenis_ras_id')->constrained('jenis_ras')->cascadeOnDelete();
+            $table->foreignId('jenis_kelinci_id')->nullable()->constrained('jenis_kelincis')->nullOnDelete();
             $table->foreignId('kandang_id')->nullable()->constrained('kandangs')->nullOnDelete();
             $table->timestamps();
         });

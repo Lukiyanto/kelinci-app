@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['jantan', 'betina', 'belum diketahui'])->default('belum diketahui');
             $table->enum('status_anak', ['hidup', 'mati'])->default('hidup');
             $table->foreignId('perkawinan_id')->constrained('perkawinan_kelincis')->cascadeOnDelete();
-            $table->foreignId('jenis_ras_id')->constrained('jenis_ras')->cascadeOnDelete();
+            $table->foreignId('jenis_kelinci_id')->constrained('jenis_kelincis')->cascadeOnDelete();
             $table->timestamps();
         });
     }
