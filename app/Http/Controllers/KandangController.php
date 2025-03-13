@@ -31,12 +31,9 @@ class KandangController extends Controller
     {
         $request->validate([
             'kode_kandang' => 'required|string|max:255',
-            'nama_kandang' => 'required|string|max:255',
-            'jenis_kandang' => 'required|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
+            'lokasi_kandang' => 'nullable|string|max:255',
             'kapasitas' => 'nullable|integer|min:0',
             'status_kandang' => 'nullable|string|max:255',
-            'peternakan_id' => 'nullable|exists:peternakans,id',
         ]);
 
         Kandang::create($request->all());
@@ -66,12 +63,9 @@ class KandangController extends Controller
     {
         $request->validate([
             'kode_kandang' => 'required|string|max:255',
-            'nama_kandang' => 'required|string|max:255',
-            'jenis_kandang' => 'required|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
+            'lokasi_kandang' => 'nullable|string|max:255',
             'kapasitas' => 'nullable|integer|min:0',
             'status_kandang' => 'nullable|string|max:255',
-            'peternakan_id' => 'nullable|exists:peternakans,id',
         ]);
 
         $kandang->update($request->all());

@@ -24,35 +24,20 @@ class KandangResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('kode_kandang')
-                    ->label('kode Kandang')
-                    ->placeholder('Kode ')
-                    ->disabled(),
-                Forms\Components\TextInput::make('nama_kandang')
-                    ->label('Nama Kandang')
-                    ->placeholder('Masukkan nama kandang')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('peternakan_id')
-                    ->label('Peternakan')
-                    ->placeholder('Pilih peternakan')
-                    ->options(
-                        \App\Models\Peternakan::all()->pluck('nama_peternakan', 'id')->toArray()
-                    )
+                    ->label('Kode Kandang')
+                    ->placeholder('Kode KDG###')
                     ->required(),
-                Forms\Components\Select::make('jenis_kelinci_id')
-                    ->label('Jenis Kelinci')
-                    ->placeholder('Pilih jenis kelinci')
-                    ->options(
-                        \App\Models\JenisKelinci::all()->pluck('nama_jenis', 'id')->toArray()
-                    )
-                    ->required(),
-                Forms\Components\TextInput::make('Kapasitas')
+                Forms\Components\TextInput::make('kapasitas')
                     ->label('Kapasitas')
                     ->placeholder('Masukkan kapasitas kandang')
                     ->required(),
+                Forms\Components\TextInput::make('lokasi_kandang')
+                    ->label('Lokasi Kandang')
+                    ->placeholder('Masukkan Lokasi Kandang')
+                    ->required(),
                 Forms\Components\Select::make('status_kandang')
                     ->label('Status Kandang')
-                    ->placeholder('Pilih status kandang')
+                    ->placeholder('Pilih Status Kandang')
                     ->options([
                         'Tersedia' => 'Tersedia',
                         'Terisi' => 'Terisi',
@@ -67,7 +52,10 @@ class KandangResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('kode_kandang')->label('Kode Kandang'),
+                Tables\Columns\TextColumn::make('lokasi')->label('Lokasi'),
+                Tables\Columns\TextColumn::make('kapasitas')->label('Kapasitas'),
+                Tables\Columns\TextColumn::make('status_kandang')->label('Status Kandang'),
             ])
             ->filters([
                 //

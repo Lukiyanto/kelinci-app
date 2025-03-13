@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('kandangs', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_kandang')->unique();
-            $table->string('nama_kandang');
-            $table->string('jenis_kandang');
-            $table->string('lokasi')->nullable();
+            $table->string('kode_kandang');
+            $table->string('lokasi_kandang')->nullable();
             $table->integer('kapasitas')->default(1);
-            $table->enum('status_kandang',['tersedia', 'terisi', 'perbaikan', 'rusak'])->default('tersedia');
-            $table->foreignId('peternakan_id')->constrained('peternakans')->cascadeOnDelete();
+            $table->enum('status_kandang',['Tersedia', 'Terisi', 'Perlu Perbaikan', 'Rusak'])->default('Tersedia');
             $table->timestamps();
         });
     }

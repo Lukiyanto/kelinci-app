@@ -27,12 +27,9 @@ class KandangFactory extends Factory
     {
         return [
             'kode_kandang' => $this->faker->unique()->numerify('KDG###'),
-            'nama_kandang' => $this->faker->word,
-            'jenis_kandang' => $this->faker->word,
-            'lokasi' => $this->faker->address,
+            'lokasi_kandang' => $this->faker->address,
             'kapasitas' => $this->faker->numberBetween(1, 10),
             'status_kandang' => $this->faker->randomElement(['tersedia', 'terisi', 'perbaikan', 'rusak']),
-            'peternakan_id' => Peternakan::inRandomOrder()->first()->id,
         ];
     }
 }
