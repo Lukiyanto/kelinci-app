@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PerkawinanKelinci;
+use App\Models\IndukKelinci;
 use Illuminate\Http\Request;
 
 class PerkawinanKelinciController extends Controller
@@ -21,7 +22,9 @@ class PerkawinanKelinciController extends Controller
      */
     public function create()
     {
-        return view('perkawinan-kelinci.create');
+        $indukBetinas = IndukKelinci::where('kode_induk', 'like', 'IKB%')->pluck('kode_induk', 'id');
+        $indukJantans = IndukKelinci::where('kode_induk', 'like', 'IKJ%')->pluck('kode_induk', 'id');
+        return view('perkawinan-kelinci.create', compact('indukBetinas', 'indukJantans'));
     }
 
     /**
@@ -40,8 +43,14 @@ class PerkawinanKelinciController extends Controller
             'jumlah_anak_mati' => 'nullable|integer|min:0',
             'catatan' => 'nullable|string',
         ]);
-        
-        PerkawinanKelinci::create($request->all());
+
+        $data = $request->all();
+        if ($request->tanggal_kawin) {
+            $data['tanggal_melahirkan'] = \Carbon\Carbon::parse($request->tanggal_kawin)->addDays(30);
+        }
+        $data['status'] = 'Berhasil';
+
+        PerkawinanKelinci::create($data);
         return redirect()->route('perkawinan-kelinci.index')->with('success', 'Perkawinan kelinci created successfully.');
     }
 
@@ -58,7 +67,9 @@ class PerkawinanKelinciController extends Controller
      */
     public function edit(PerkawinanKelinci $perkawinanKelinci)
     {
-        return view('perkawinan-kelinci.edit', compact('perkawinanKelinci'));
+        $indukBetinas = IndukKelinci::where('kode_induk', 'like', 'IKB%')->pluck('kode_induk', 'id');
+        $indukJantans = IndukKelinci::where('kode_induk', 'like', 'IKJ%')->pluck('kode_induk', 'id');
+        return view('perkawinan-kelinci.edit', compact('perkawinanKelinci', 'indukBetinas', 'indukJantans'));
     }
 
     /**
@@ -78,7 +89,13 @@ class PerkawinanKelinciController extends Controller
             'catatan' => 'nullable|string',
         ]);
 
-        $perkawinanKelinci->update($request->all());
+        $data = $request->all();
+        if ($request->tanggal_kawin) {
+            $data['tanggal_melahirkan'] = \Carbon\Carbon::parse($request->tanggal_kawin)->addDays(30);
+        }
+        $data['status'] = 'Berhasil';
+
+        $perkawinanKelinci->update($data);
         return redirect()->route('perkawinan-kelinci.index')->with('success', 'Perkawinan kelinci updated successfully.');
     }
 

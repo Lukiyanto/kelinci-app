@@ -22,6 +22,18 @@ class PerkawinanKelinci extends Model
         'catatan'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if ($model->tanggal_kawin) {
+                $model->tanggal_melahirkan = \Carbon\Carbon::parse($model->tanggal_kawin)->addDays(30);
+            }
+            $model->status = 'Berhasil';
+        });
+    }
+
     public function indukBetina(): BelongsTo
     {
         return $this->belongsTo(IndukKelinci::class, 'induk_betina_id');

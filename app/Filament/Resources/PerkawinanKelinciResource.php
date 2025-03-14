@@ -3,15 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PerkawinanKelinciResource\Pages;
-use App\Filament\Resources\PerkawinanKelinciResource\RelationManagers;
 use App\Models\PerkawinanKelinci;
+use App\Models\IndukKelinci;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PerkawinanKelinciResource extends Resource
 {
@@ -26,15 +25,23 @@ class PerkawinanKelinciResource extends Resource
                 Forms\Components\Select::make('induk_betina_id')
                     ->label('Induk Betina')
                     ->placeholder('Pilih Induk Betina')
-                    ->relationship('indukBetina', 'kode_induk'),
+                    ->options(
+                        IndukKelinci::where('kode_induk', 'like', 'IKB%')->pluck('kode_induk', 'id')->toArray()
+                    )
+                    ->required(),
                 Forms\Components\Select::make('induk_jantan_id')
                     ->label('Induk Jantan')
                     ->placeholder('Pilih Induk Jantan')
-                    ->relationship('indukJantan', 'kode_induk'),
+                    ->options(
+                        IndukKelinci::where('kode_induk', 'like', 'IKJ%')->pluck('kode_induk', 'id')->toArray()
+                    )
+                    ->required(),
                 Forms\Components\DatePicker::make('tanggal_kawin')
-                    ->label('Tanggal Kawin'),
+                    ->label('Tanggal Kawin')
+                    ->required(),
                 Forms\Components\DatePicker::make('tanggal_melahirkan')
-                    ->label('Tanggal Melahirkan'),
+                    ->label('Tanggal Melahirkan')
+                    ->disabled(),
                 Forms\Components\Select::make('status')
                     ->label('Status Perkawinan')
                     ->placeholder('Pilih Status Perkawinan')
@@ -43,14 +50,16 @@ class PerkawinanKelinciResource extends Resource
                         'menunggu' => 'Menunggu',
                         'berhasil' => 'Berhasil',
                         'gagal' => 'Gagal',
-                    ]),
+                    ])
+                    ->default('belum kawin')
+                    ->required(),
                 Forms\Components\TextInput::make('jumlah_anak')
                     ->label('Jumlah Anak')
                     ->placeholder('Jumlah anak yang dilahirkan'),
                 Forms\Components\TextInput::make('jumlah_anak_hidup')
                     ->label('Jumlah Anak Hidup')
                     ->placeholder('Jumlah anak yang hidup'),
-                    Forms\Components\TextInput::make('jumlah_anak_mati')
+                Forms\Components\TextInput::make('jumlah_anak_mati')
                     ->label('Jumlah Anak Mati')
                     ->placeholder('Jumlah anak yang mati (jika ada)'),
                 Forms\Components\Textarea::make('catatan')
