@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('induk_jantan_id')->constrained('induk_kelincis')->cascadeOnDelete();
             $table->date('tanggal_kawin')->nullable();
             $table->date('tanggal_melahirkan')->nullable();
-            $table->enum('status_perkawinan', ['berhasil', 'gagal', 'menunggu'])->default('menunggu');
+            $table->enum('status_perkawinan', ['Belum Kawin', 'Menunggu', 'Berhasil', 'Gagal'])->default('Belum Kawin');
             $table->integer('jumlah_anak')->nullable();
             $table->integer('jumlah_anak_hidup')->nullable();
             $table->integer('jumlah_anak_mati')->nullable();

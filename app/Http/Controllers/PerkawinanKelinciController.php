@@ -30,15 +30,15 @@ class PerkawinanKelinciController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'induk_jantan_id' => 'required|integer',
-            'induk_betina_id' => 'required|integer',
-            'tanggal_kawin' => 'required|date',
-            'tanggal_lahir' => 'required|date',
-            'status' => 'required|string',
-            'jumlah_anak' => 'required|integer|min:0',
-            'jumlah_anak_hidup' => 'required|integer|min:0',
-            'jumlah_anak_mati' => 'required|integer|min:0',
-            'catatan' => 'required|string',
+            'induk_jantan_id' => 'nullable|integer',
+            'induk_betina_id' => 'nullable|integer',
+            'tanggal_kawin' => 'nullable|date',
+            'tanggal_lahir' => 'nullable|date',
+            'status' => 'nullable|string',
+            'jumlah_anak' => 'nullable|integer|min:0',
+            'jumlah_anak_hidup' => 'nullable|integer|min:0',
+            'jumlah_anak_mati' => 'nullable|integer|min:0',
+            'catatan' => 'nullable|string',
         ]);
         
         PerkawinanKelinci::create($request->all());
@@ -67,15 +67,15 @@ class PerkawinanKelinciController extends Controller
     public function update(Request $request, PerkawinanKelinci $perkawinanKelinci)
     {
         $request->validate([
-            'induk_jantan_id' => 'required|integer',
-            'induk_betina_id' => 'required|integer',
-            'tanggal_kawin' => 'required|date',
-            'tanggal_lahir' => 'required|date',
-            'status' => 'required|string',
-            'jumlah_anak' => 'required|integer|min:0',
-            'jumlah_anak_hidup' => 'required|integer|min:0',
-            'jumlah_anak_mati' => 'required|integer|min:0',
-            'catatan' => 'required|string',
+            'induk_jantan_id' => 'nullable|integer',
+            'induk_betina_id' => 'nullable|integer',
+            'tanggal_kawin' => 'nullable|date',
+            'tanggal_lahir' => 'nullable|date',
+            'status' => 'nullable|string',
+            'jumlah_anak' => 'nullable|integer|min:0',
+            'jumlah_anak_hidup' => 'nullable|integer|min:0',
+            'jumlah_anak_mati' => 'nullable|integer|min:0',
+            'catatan' => 'nullable|string',
         ]);
 
         $perkawinanKelinci->update($request->all());

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('induk_kelincis', function (Blueprint $table) {
             $table->id();
             $table->string('kode_induk')->unique();
-            $table->string('nama_induk');
-            $table->date('tanggal_lahir');
+            $table->string('nama_induk')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['Jantan', 'Betina']);
             $table->text('catatan')->nullable();
             $table->foreignId('jenis_kelinci_id')->nullable()->constrained('jenis_kelincis')->nullOnDelete();

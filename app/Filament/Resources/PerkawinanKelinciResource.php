@@ -25,36 +25,37 @@ class PerkawinanKelinciResource extends Resource
             ->schema([
                 Forms\Components\Select::make('induk_betina_id')
                     ->label('Induk Betina')
-                    ->relationship('indukBetina', 'nama_induk')
-                    ->required(),
+                    ->placeholder('Pilih Induk Betina')
+                    ->relationship('indukBetina', 'kode_induk'),
                 Forms\Components\Select::make('induk_jantan_id')
                     ->label('Induk Jantan')
-                    ->relationship('indukJantan', 'nama_induk')
-                    ->required(),
+                    ->placeholder('Pilih Induk Jantan')
+                    ->relationship('indukJantan', 'kode_induk'),
                 Forms\Components\DatePicker::make('tanggal_kawin')
-                    ->label('Tanggal Kawin')
-                    ->required(),
+                    ->label('Tanggal Kawin'),
                 Forms\Components\DatePicker::make('tanggal_melahirkan')
-                    ->label('Tanggal Melahirkan')
-                    ->required(),
+                    ->label('Tanggal Melahirkan'),
                 Forms\Components\Select::make('status')
-                    ->label('Status')
+                    ->label('Status Perkawinan')
+                    ->placeholder('Pilih Status Perkawinan')
                     ->options([
-                        'Berhasil' => 'Berhasil',
-                        'Gagal' => 'Gagal',
-                    ])
-                    ->required(),
+                        'belum kawin' => 'Belum Kawin',
+                        'menunggu' => 'Menunggu',
+                        'berhasil' => 'Berhasil',
+                        'gagal' => 'Gagal',
+                    ]),
                 Forms\Components\TextInput::make('jumlah_anak')
                     ->label('Jumlah Anak')
-                    ->required(),
+                    ->placeholder('Jumlah anak yang dilahirkan'),
                 Forms\Components\TextInput::make('jumlah_anak_hidup')
                     ->label('Jumlah Anak Hidup')
-                    ->required(),
-                Forms\Components\TextInput::make('jumlah_anak_mati')
+                    ->placeholder('Jumlah anak yang hidup'),
+                    Forms\Components\TextInput::make('jumlah_anak_mati')
                     ->label('Jumlah Anak Mati')
-                    ->required(),
+                    ->placeholder('Jumlah anak yang mati (jika ada)'),
                 Forms\Components\Textarea::make('catatan')
                     ->label('Catatan')
+                    ->placeholder('Tambahkan catatan jika perlu')
                     ->maxLength(65535),
             ]);
     }

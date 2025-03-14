@@ -17,6 +17,17 @@ class Kandang extends Model
         'kapasitas',
         'status_kandang',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $latestKandang = self::latest('id')->first();
+            $nextNumber = $latestKandang ? ((int) substr($latestKandang->kode_kandang, 3)) + 1 : 1;
+            $model->kode_kandang = 'KDG' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        });
+    }
     
     public function indukKelinci(): HasMany
     {

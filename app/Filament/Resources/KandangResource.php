@@ -25,8 +25,8 @@ class KandangResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('kode_kandang')
                     ->label('Kode Kandang')
-                    ->placeholder('Kode KDG###')
-                    ->required(),
+                    ->placeholder('Kode kandang akan diisi otomatis')
+                    ->disabled(),
                 Forms\Components\TextInput::make('kapasitas')
                     ->label('Kapasitas')
                     ->placeholder('Masukkan kapasitas kandang')
