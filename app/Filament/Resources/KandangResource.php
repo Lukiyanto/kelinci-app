@@ -7,6 +7,7 @@ use App\Filament\Resources\KandangResource\RelationManagers;
 use App\Models\Kandang;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Radio;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -23,6 +24,16 @@ class KandangResource extends Resource
     {
         return $form
             ->schema([
+                Radio::make('jumlah_kandang')
+                    ->label('Jumlah Kandang')
+                    ->options([
+                        0 => '+1',
+                        4 => '+5',
+                        9 => '+10',
+                    ])
+                    ->default(0)
+                    ->required()
+                    ->visible(fn ($livewire) => $livewire instanceof Pages\CreateKandang),
                 Forms\Components\TextInput::make('kode_kandang')
                     ->label('Kode Kandang')
                     ->placeholder('Kode kandang akan diisi otomatis')
@@ -30,6 +41,8 @@ class KandangResource extends Resource
                 Forms\Components\TextInput::make('kapasitas')
                     ->label('Kapasitas')
                     ->placeholder('Masukkan kapasitas kandang')
+                    ->numeric()
+                    ->default(1)
                     ->required(),
                 Forms\Components\TextInput::make('lokasi_kandang')
                     ->label('Lokasi Kandang')
@@ -43,6 +56,7 @@ class KandangResource extends Resource
                         'Perlu Perbaikan' => 'Perlu Perbaikan',
                         'Rusak' => 'Rusak',
                     ])
+                    ->default('Tersedia')
                     ->required(),
             ]);
     }
@@ -63,9 +77,7 @@ class KandangResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
