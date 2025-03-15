@@ -12,13 +12,13 @@ class IndukKelinci extends Model
     use HasFactory;
 
     protected $fillable = [
+        'jenis_kelinci_id',
+        'kandang_id',
         'kode_induk',
         'nama_induk',
         'tanggal_lahir',
         'jenis_kelamin',
         'catatan',
-        'jenis_kelinci_id',
-        'kandang_id'
     ];
 
     protected static function boot()
@@ -30,6 +30,21 @@ class IndukKelinci extends Model
             $latestIndukKelinci = self::where('kode_induk', 'like', $prefix . '%')->latest('id')->first();
             $nextNumber = $latestIndukKelinci ? ((int) substr($latestIndukKelinci->kode_induk, 3)) + 1 : 1;
             $model->kode_induk = $prefix . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        });
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($indukKelinci) {
+            $kandang = $indukKelinci->kandang;
+            $kandang->status_kandang = 'Terisi';
+            $kandang->save();
+        });
+
+        static::deleted(function ($indukKelinci) {
+            $kandang = $indukKelinci->kandang;
+            $kandang->status_kandang = 'Tersedia';
+            $kandang->save();
         });
     }
     
@@ -50,6 +65,6 @@ class IndukKelinci extends Model
 
     public function perkawinan(): BelongsTo
     {
-        return $this->belongsTo(PerkawinanKelinci::class); // Tambahkan ini jika diperlukan
+        return $this->belongsTo(PerkawinanKelinci::class);
     }
 }

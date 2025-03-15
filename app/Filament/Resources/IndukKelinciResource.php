@@ -5,8 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\IndukKelinciResource\Pages;
 use App\Filament\Resources\IndukKelinciResource\RelationManagers;
 use App\Models\IndukKelinci;
+use App\Models\JenisKelinci;
+use App\Models\Kandang;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Radio;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -23,19 +26,22 @@ class IndukKelinciResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('jenis_kelinci_id')
+                Forms\Components\Radio::make('jenis_kelinci_id')
                     ->label('Jenis Kelinci')
-                    ->placeholder('Pilih jenis kelinci')
                     ->options(
-                        \App\Models\JenisKelinci::all()->pluck('nama_jenis', 'id')->toArray()
+                        JenisKelinci::all()->pluck('nama_jenis', 'id')->toArray()
                     )
+                    ->default(JenisKelinci::where('nama_jenis', 'Dutch')->first()->id)
                     ->required(),
                 Forms\Components\Select::make('kandang_id')
                     ->label('Kandang')
                     ->placeholder('Pilih kandang')
                     ->options(
-                        \App\Models\Kandang::all()->pluck('kode_kandang', 'id')->toArray()
+                        Kandang::where('status_kandang', 'Tersedia')->pluck('kode_kandang', 'id')->toArray()
                     )
+                    ->default(function () {
+                        return Kandang::where('status_kandang', 'Tersedia')->first()->id;
+                    })
                     ->required(),
                 Forms\Components\TextInput::make('kode_induk')
                     ->label('Kode Induk')
@@ -48,13 +54,13 @@ class IndukKelinciResource extends Resource
                 Forms\Components\Datepicker::make('tanggal_lahir')
                     ->label('Tanggal Lahir')
                     ->placeholder('Pilih tanggal lahir'),
-                Forms\Components\Select::make('jenis_kelamin')
+                Forms\Components\Radio::make('jenis_kelamin')
                     ->label('Jenis Kelamin')
-                    ->placeholder('Pilih jenis kelamin')
                     ->options([
-                        'Jantan' => 'Jantan',
                         'Betina' => 'Betina',
+                        'Jantan' => 'Jantan',
                     ])
+                    ->default('Betina')
                     ->required(),
                 Forms\Components\Textarea::make('catatan')
                     ->label('Catatan')
