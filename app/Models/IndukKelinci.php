@@ -18,6 +18,7 @@ class IndukKelinci extends Model
         'nama_induk',
         'tanggal_lahir',
         'jenis_kelamin',
+        'status_kawin',
         'catatan',
     ];
 

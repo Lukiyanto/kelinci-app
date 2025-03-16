@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('induk_kelincis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('jenis_kelinci_id')->nullable()->constrained('jenis_kelincis')->nullOnDelete();
+            $table->foreignId('kandang_id')->nullable()->constrained('kandangs')->nullOnDelete();
             $table->string('kode_induk')->unique();
             $table->string('nama_induk')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['Jantan', 'Betina']);
+            $table->enum('status_kawin', ['Belum Kawin', 'Siap Kawin', 'Sedang Kawin', 'Sedang Hamil', 'Pasca Melahirkan'])->default('Belum Kawin');
             $table->text('catatan')->nullable();
-            $table->foreignId('jenis_kelinci_id')->nullable()->constrained('jenis_kelincis')->nullOnDelete();
-            $table->foreignId('kandang_id')->nullable()->constrained('kandangs')->nullOnDelete();
             $table->timestamps();
         });
     }

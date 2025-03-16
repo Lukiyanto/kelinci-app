@@ -26,7 +26,7 @@ class IndukKelinciResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Radio::make('jenis_kelinci_id')
+                Radio::make('jenis_kelinci_id')
                     ->label('Jenis Kelinci')
                     ->options(
                         JenisKelinci::all()->pluck('nama_jenis', 'id')->toArray()
@@ -54,13 +54,25 @@ class IndukKelinciResource extends Resource
                 Forms\Components\Datepicker::make('tanggal_lahir')
                     ->label('Tanggal Lahir')
                     ->placeholder('Pilih tanggal lahir'),
-                Forms\Components\Radio::make('jenis_kelamin')
+                Radio::make('jenis_kelamin')
                     ->label('Jenis Kelamin')
                     ->options([
                         'Betina' => 'Betina',
                         'Jantan' => 'Jantan',
                     ])
                     ->default('Betina')
+                    ->required(),
+                Forms\Components\Select::make('status_kawin')
+                    ->label('Status kawin')
+                    ->placeholder('Pilih status kawin')
+                    ->options([
+                        'Belum Kawin' => 'Belum Kawin',
+                        'Siap Kawin' => 'Siap Kawin',
+                        'Sedang Kawin' => 'Sedang Kawin',
+                        'Sedang Hamil' => 'Sedang Hamil',
+                        'Pasca Melahirkan' => 'Pasca Melahirkan',
+                    ])
+                    ->default('Belum Kawin')
                     ->required(),
                 Forms\Components\Textarea::make('catatan')
                     ->label('Catatan')

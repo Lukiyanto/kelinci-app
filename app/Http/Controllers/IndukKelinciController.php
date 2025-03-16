@@ -30,13 +30,14 @@ class IndukKelinciController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'jenis_kelinci_id' => 'required|integer',
+            'kandang_id' => 'required|integer',
             'kode_induk' => 'required|string|max:255',
             'nama_induk' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'required|string|max:255',
+            'status_kawin' => 'nullable|string|max:255',
             'catatan' => 'nullable|string',
-            'jenis_kelinci_id' => 'required|integer',
-            'kandang_id' => 'required|integer',
         ]);
 
         IndukKelinci::create($request->all());
