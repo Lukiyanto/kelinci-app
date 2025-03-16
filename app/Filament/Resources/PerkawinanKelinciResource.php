@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class PerkawinanKelinciResource extends Resource
 {
@@ -26,8 +27,16 @@ class PerkawinanKelinciResource extends Resource
                     ->label('Induk Betina')
                     ->placeholder('Pilih Induk Betina')
                     ->options(
-                        IndukKelinci::where('kode_induk', 'like', 'IKB%')->pluck('kode_induk', 'id')->toArray()
+                        IndukKelinci::where('kode_induk', 'like', 'IKB%')
+                            ->whereNotIn('status_kawin', ['Sedang Hamil', 'Sedang Kawin', 'Pasca Melahirkan'])
+                            ->pluck('kode_induk', 'id')
+                            ->toArray()
                     )
+                    ->default(function () {
+                        return IndukKelinci::where('kode_induk', 'like', 'IKB%')
+                            ->whereNotIn('status_kawin', ['Sedang Hamil', 'Sedang Kawin', 'Pasca Melahirkan'])
+                            ->first()->id ?? null;
+                    })
                     ->required(),
                 Forms\Components\Select::make('induk_jantan_id')
                     ->label('Induk Jantan')
@@ -35,23 +44,32 @@ class PerkawinanKelinciResource extends Resource
                     ->options(
                         IndukKelinci::where('kode_induk', 'like', 'IKJ%')->pluck('kode_induk', 'id')->toArray()
                     )
+                    ->default(function () {
+                        return IndukKelinci::where('kode_induk', 'like', 'IKJ%')->first()->id ?? null;
+                    })
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_kawin')
                     ->label('Tanggal Kawin')
+                    ->default(Carbon::now())
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_melahirkan')
                     ->label('Tanggal Melahirkan')
+                    ->default(Carbon::now()->addDays(30))
                     ->disabled(),
                 Forms\Components\Select::make('status')
                     ->label('Status Perkawinan')
                     ->placeholder('Pilih Status Perkawinan')
                     ->options([
-                        'belum kawin' => 'Belum Kawin',
-                        'menunggu' => 'Menunggu',
-                        'berhasil' => 'Berhasil',
-                        'gagal' => 'Gagal',
+                        'Belum Kawin' => 'Belum Kawin',
+                        'Siap Kawin' => 'Siap Kawin',
+                        'Sudah Kawin' => 'Sudah Kawin',
+                        'Sedang Hamil' => 'Sedang Hamil',
+                        'Pasca Melahirkan' => 'Pasca Melahirkan',
+                        'Menunggu' => 'Menunggu',
+                        'Berhasil' => 'Berhasil',
+                        'Gagal' => 'Gagal',
                     ])
-                    ->default('belum kawin')
+                    ->default('Sedang Hamil')
                     ->required(),
                 Forms\Components\TextInput::make('jumlah_anak')
                     ->label('Jumlah Anak')

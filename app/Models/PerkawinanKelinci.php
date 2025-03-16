@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 class PerkawinanKelinci extends Model
 {
@@ -27,10 +28,27 @@ class PerkawinanKelinci extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if ($model->tanggal_kawin) {
-                $model->tanggal_melahirkan = \Carbon\Carbon::parse($model->tanggal_kawin)->addDays(30);
+            $model->tanggal_kawin = Carbon::now();
+            $model->tanggal_melahirkan = Carbon::now()->addDays(30);
+            $model->status = 'Sedang Hamil';
+
+            $indukBetina = $model->indukBetina;
+            $indukBetina->status_kawin = 'Sedang Hamil';
+            $indukBetina->save();
+        });
+
+        static::created(function ($model) {
+            $indukBetina = $model->indukBetina;
+            $indukBetina->status_kawin = 'Sedang Hamil';
+            $indukBetina->save();
+        });
+
+        static::updated(function ($model) {
+            if ($model->status === 'Pasca Melahirkan') {
+                $indukBetina = $model->indukBetina;
+                $indukBetina->status_kawin = 'Pasca Melahirkan';
+                $indukBetina->save();
             }
-            $model->status = 'Berhasil';
         });
     }
 
