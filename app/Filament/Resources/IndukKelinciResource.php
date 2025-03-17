@@ -72,7 +72,7 @@ class IndukKelinciResource extends Resource
                         'Sedang Hamil' => 'Sedang Hamil',
                         'Pasca Melahirkan' => 'Pasca Melahirkan',
                     ])
-                    ->default('Belum Kawin')
+                    ->default('Siap Kawin')
                     ->required(),
                 Forms\Components\Textarea::make('catatan')
                     ->label('Catatan')
@@ -85,11 +85,10 @@ class IndukKelinciResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('kode_induk')->label('Kode Induk'),
-                Tables\Columns\TextColumn::make('nama_induk')->label('Nama Induk'),
-                Tables\Columns\TextColumn::make('tanggal_lahir')->label('Tanggal Lahir'),
-                Tables\Columns\TextColumn::make('jenis_kelamin')->label('Jenis Kelamin'),
-                Tables\Columns\TextColumn::make('jenisKelinci.nama_jenis')->label('Jenis Kelinci'),
                 Tables\Columns\TextColumn::make('kandang.kode_kandang')->label('Kandang'),
+                Tables\Columns\TextColumn::make('jenis_kelamin')->label('Jenis Kelamin'),
+                Tables\Columns\TextColumn::make('status_kawin')->label('Status Kawin'),
+                Tables\Columns\TextColumn::make('jenisKelinci.nama_jenis')->label('Jenis Kelinci'),
             ])
             ->filters([
                 //
