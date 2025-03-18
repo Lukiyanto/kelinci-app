@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Kandang;
-use App\Models\Peternakan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,11 +24,18 @@ class KandangFactory extends Factory
      */
     public function definition(): array
     {
+        static $number = 1;
+        $kode_kandang = 'KDG' . str_pad($number++, 3, '0', STR_PAD_LEFT);
+
+        $locations = range('A', 'Z');
+        $location_index = intdiv($number - 1, 5) % count($locations);
+        $lokasi_kandang = 'Lokasi ' . $locations[$location_index];
+
         return [
-            'kode_kandang' => $this->faker->unique()->numerify('KDG###'),
-            'lokasi_kandang' => $this->faker->address,
-            'kapasitas' => $this->faker->numberBetween(1, 10),
-            'status_kandang' => $this->faker->randomElement(['tersedia', 'terisi', 'perbaikan', 'rusak']),
+            'kode_kandang' => $kode_kandang,
+            'lokasi_kandang' => $lokasi_kandang,
+            'kapasitas' => 1,
+            'status_kandang' => 'Tersedia',
         ];
     }
 }

@@ -15,7 +15,8 @@ class JenisKelinciFactory extends Factory
      *
      * @var string
      */
-    
+    protected $model = JenisKelinci::class;
+
     /**
      * Define the model's default state.
      *
@@ -23,10 +24,12 @@ class JenisKelinciFactory extends Factory
      */
     public function definition(): array
     {
+        $nama_jenis = 'Dutch';
+
         return [
-            'nama_jenis' => $this->faker->word,
-            'deskripsi' => $this->faker->sentence,
-            'harga_jual' => $this->faker->numberBetween(30000, 40000),
+            'nama_jenis' => $nama_jenis,
+            'deskripsi' => "Ras $nama_jenis",
+            'harga_jual' => 30000,
         ];
     }
 }

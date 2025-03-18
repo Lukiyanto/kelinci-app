@@ -13,6 +13,6 @@ class IndukKelinciSeeder extends Seeder
      */
     public function run(): void
     {
-        IndukKelinci::factory()->count(40)->create();
+        IndukKelinci::factory()->count(50)->create();
     }
 }

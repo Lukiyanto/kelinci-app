@@ -13,6 +13,6 @@ class JenisKelinciSeeder extends Seeder
      */
     public function run(): void
     {
-        JenisKelinci::factory()->count(4)->create();
+        JenisKelinci::factory()->count(1)->create();
     }
 }
