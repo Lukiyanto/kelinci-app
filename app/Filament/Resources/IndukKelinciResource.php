@@ -70,6 +70,7 @@ class IndukKelinciResource extends Resource
                         'Siap Kawin' => 'Siap Kawin',
                         'Sedang Kawin' => 'Sedang Kawin',
                         'Sedang Hamil' => 'Sedang Hamil',
+                        'Melahirkan' => 'Melahirkan',
                         'Pasca Melahirkan' => 'Pasca Melahirkan',
                     ])
                     ->default('Siap Kawin')

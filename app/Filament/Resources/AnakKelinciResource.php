@@ -23,6 +23,14 @@ class AnakKelinciResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('perkawinan_id')
+                    ->label('Perkawinan')
+                    ->relationship('perkawinan', 'id')
+                    ->required(),
+                Forms\Components\Select::make('jenis_kelinci_id')
+                    ->label('Jenis Kelinci')
+                    ->relationship('jenisKelinci', 'nama_jenis')
+                    ->required(),
                 Forms\Components\TextInput::make('kode_anak')
                     ->label('Kode Anak')
                     ->placeholder('Kode anak akan diisi otomatis')
@@ -38,9 +46,11 @@ class AnakKelinciResource extends Resource
                 Forms\Components\Select::make('jenis_kelamin')
                     ->label('Jenis Kelamin')
                     ->options([
-                        'Jantan' => 'Jantan',
                         'Betina' => 'Betina',
+                        'Jantan' => 'Jantan',
+                        '-' => '-',
                     ])
+                    ->default('-')
                     ->required(),
                 Forms\Components\Select::make('status_anak')
                     ->label('Status Anak')
@@ -48,14 +58,7 @@ class AnakKelinciResource extends Resource
                         'Hidup' => 'Hidup',
                         'Mati' => 'Mati',
                     ])
-                    ->required(),
-                Forms\Components\Select::make('perkawinan_id')
-                    ->label('Perkawinan')
-                    ->relationship('perkawinan', 'id')
-                    ->required(),
-                Forms\Components\Select::make('jenis_kelinci_id')
-                    ->label('Jenis Kelinci')
-                    ->relationship('jenisKelinci', 'nama_jenis')
+                    ->default('Hidup')
                     ->required(),
             ]);
     }
@@ -64,13 +67,13 @@ class AnakKelinciResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('perkawinan.id')->label('Perkawinan'),
+                Tables\Columns\TextColumn::make('jenisKelinci.nama_jenis')->label('Jenis Kelinci'),
                 Tables\Columns\TextColumn::make('kode_anak')->label('Kode Anak'),
                 Tables\Columns\TextColumn::make('nama_anak')->label('Nama Anak'),
                 Tables\Columns\TextColumn::make('tanggal_lahir')->label('Tanggal Lahir'),
                 Tables\Columns\TextColumn::make('jenis_kelamin')->label('Jenis Kelamin'),
                 Tables\Columns\TextColumn::make('status_anak')->label('Status Anak'),
-                Tables\Columns\TextColumn::make('perkawinan.id')->label('Perkawinan'),
-                Tables\Columns\TextColumn::make('jenisKelinci.nama_jenis')->label('Jenis Kelinci'),
             ])
             ->filters([
                 //
