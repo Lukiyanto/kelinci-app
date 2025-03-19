@@ -64,6 +64,7 @@ class PerkawinanKelinciResource extends Resource
                         'Siap Kawin' => 'Siap Kawin',
                         'Sudah Kawin' => 'Sudah Kawin',
                         'Sedang Hamil' => 'Sedang Hamil',
+                        'Melahirkan' => 'Melahirkan',
                         'Pasca Melahirkan' => 'Pasca Melahirkan',
                         'Menunggu' => 'Menunggu',
                         'Berhasil' => 'Berhasil',

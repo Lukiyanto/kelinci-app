@@ -61,4 +61,28 @@ class PerkawinanKelinci extends Model
     {
         return $this->belongsTo(IndukKelinci::class, 'induk_jantan_id');
     }
+
+    public function anakKelincis()
+    {
+        return $this->hasMany(AnakKelinci::class, 'perkawinan_id');
+    }
+
+    public function melahirkan()
+    {
+        $jumlahAnak = $this->jumlah_anak;
+        $jumlahAnakHidup = $this->jumlah_anak_hidup;
+        $jumlahAnakMati = $this->jumlah_anak_mati;
+
+        for ($i = 0; $i < $jumlahAnak; $i++) {
+            $statusAnak = $i < $jumlahAnakHidup ? 'Hidup' : 'Mati';
+            AnakKelinci::create([
+                'perkawinan_id' => $this->id,
+                'jenis_kelinci_id' => $this->indukBetina->jenis_kelinci_id,
+                'nama_anak' => 'Anak ' . ($i + 1),
+                'tanggal_lahir' => $this->tanggal_melahirkan,
+                'jenis_kelamin' => 'Belum Diketahui',
+                'status_anak' => $statusAnak,
+            ]);
+        }
+    }
 }
