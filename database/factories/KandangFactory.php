@@ -25,11 +25,12 @@ class KandangFactory extends Factory
     public function definition(): array
     {
         static $number = 1;
-        $kode_kandang = 'KDG' . str_pad($number++, 3, '0', STR_PAD_LEFT);
+        $kode_kandang = 'KDG' . str_pad($number, 3, '0', STR_PAD_LEFT);
 
         $locations = range('A', 'Z');
         $location_index = intdiv($number - 1, 5) % count($locations);
         $lokasi_kandang = 'Lokasi ' . $locations[$location_index];
+        $number++;
 
         return [
             'kode_kandang' => $kode_kandang,
