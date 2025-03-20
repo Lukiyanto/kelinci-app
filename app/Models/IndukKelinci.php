@@ -38,14 +38,18 @@ class IndukKelinci extends Model
     {
         static::created(function ($indukKelinci) {
             $kandang = $indukKelinci->kandang;
-            $kandang->status_kandang = 'Terisi';
-            $kandang->save();
+            if ($kandang) {
+                $kandang->status_kandang = 'Terisi';
+                $kandang->save();
+            }
         });
 
         static::deleted(function ($indukKelinci) {
             $kandang = $indukKelinci->kandang;
-            $kandang->status_kandang = 'Tersedia';
-            $kandang->save();
+            if ($kandang) {
+                $kandang->status_kandang = 'Tersedia';
+                $kandang->save();
+            }
         });
     }
     

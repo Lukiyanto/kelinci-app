@@ -27,10 +27,11 @@ class IndukKelinciFactory extends Factory
     public function definition(): array
     {
         static $number = 1;
-        $kode_induk = 'INK' . str_pad($number++, 3, '0', STR_PAD_LEFT);
+        $kode_induk = 'INK' . str_pad($number, 3, '0', STR_PAD_LEFT);
 
         // Ambil kandang_id secara berurutan
         $kandang = Kandang::orderBy('id')->skip($number - 1)->first();
+        $number++;
 
         $status_kawin = 'Siap Kawin';
 
